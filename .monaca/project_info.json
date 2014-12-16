@@ -1,0 +1,19 @@
+{
+    "plugins": [
+        "mobi.monaca.plugins.Monaca",
+        "org.apache.cordova.splashscreen",
+        "org.apache.cordova.statusbar",
+        "org.apache.cordova.device"
+    ],
+    "framework_version": "3.5",
+    "xcode_version": "5",
+    "title-ja": "",
+    "title-en": "Projeto LadiesGame",
+    "description-ja": "",
+    "description-en": "LadiesGame",
+    "category": "User Template",
+    "platform": [
+        "android"
+    ],
+    "name": "generated-1417480260-5474a039fd17348812042575"
+}
