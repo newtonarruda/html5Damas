@@ -1,5 +1,5 @@
 table{
-    border:solid #000 1px;
+    border:solid #fff 1px;
     background-image: url(../images/fundo_preto.jpg); 
 	width:200px;
 	padding:0;
@@ -14,11 +14,11 @@ table tr td{
 }
 
 table tr:nth-child(even) td:nth-child(even) {
-    background-color: #dedede; 
+    background-color: #F5DFD3; 
 }
 
 table tr:nth-child(odd) td:nth-child(odd) {
-	background-color: #dedede;  
+	background-color:#F5DFD3;  
 }
 
 div.peca {
@@ -31,18 +31,30 @@ div.peca {
 }
 
 div.azul {
-	background-color: blue;
+	background: -webkit-radial-gradient(#5C28EB, white, #5C28EB); /* Safari 5.1 to 6.0 */
+	background: -o-radial-gradient(#5C28EB, white, #5C28EB); /* For Opera 11.6 to 12.0 */
+	background: -moz-radial-gradient(#5C28EB, white, #5C28EB); /* For Firefox 3.6 to 15 */
+	background: radial-gradient(#5C28EB, white, #5C28EB); /* Standard syntax */
 }
 
 div.vermelha {
-	background-color: red;
+
+	background: -webkit-radial-gradient(#D90F23, white, #D90F23); /* Safari 5.1 to 6.0 */
+	background: -o-radial-gradient(#D90F23, white, #D90F23); /* For Opera 11.6 to 12.0 */
+	background: -moz-radial-gradient(#D90F23, white, #D90F23); /* For Firefox 3.6 to 15 */
+	background: radial-gradient(#D90F23, white, #D90F23); /* Standard syntax */	
 }
 
 div#boxA, div#boxB{
 	float: left;
 	margin:0 20px;
-	background: #EEE;
+	background: #333;
 	border: 1px solid #CCC;
 	height: 200px;
 	width: 200px;
+}
+body
+{
+	background-color: #000;
+	margin:10 10 0 0;
 }

@@ -20,7 +20,7 @@ function drop(t,e) {
 //}
 
 $(function() {
-    $(".peca").draggable({ grid: [ 50, 50 ] });
+    $(".peca").draggable({ grid: [ 54, 54 ] });
 });
 
 function resetPecas(){
