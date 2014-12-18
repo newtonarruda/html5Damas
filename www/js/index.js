@@ -100,6 +100,19 @@ function comePeca(){
     if(validaComePeca(idCasaInicial, idCasaFinal)){
         tabuleiro[parseInt(idCasaFinal.substring(3, 4))][parseInt(idCasaFinal.substring(5, 6))] = idPeca;
         tabuleiro[parseInt(idCasaInicial.substring(3, 4))][parseInt(idCasaInicial.substring(5, 6))] = "";
+
+        // Encontra a casa da peça a ser comida
+        if(parseInt(idCasaInicial.substring(3, 4)) - parseInt(idCasaFinal.substring(3, 4)) == -2){
+            xCasaPcComida = parseInt(idCasaInicial.substring(3, 4)) + 1;
+            yCasaPcComida = parseInt(idCasaInicial.substring(5, 6)) - 1;
+        }else{
+            xCasaPcComida = parseInt(idCasaInicial.substring(3, 4)) - 1;
+            yCasaPcComida = parseInt(idCasaInicial.substring(5, 6)) + 1;
+        }
+        
+//        var nomepecacomida = ""
+//        $.(id=)
         // TODO: Excluir a peça comida
     }
+	
 }
