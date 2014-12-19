@@ -48,6 +48,12 @@ $(function() {
                 var casa = dropped[0].id.replace('td-', '').split("-");
                 console.log("Casa : " + casa[0] + " - " + casa[1]);
 
+                // casa[0] armazena a posição x, enquanto casa[1] armazena a posição y
+
+                //console.log((tabuleiro[casa[0]][casa[1]] && tabuleiro[casa[0]][casa[1]] != ""));
+                // if(tabuleiro[casa[0]][casa[1]] && tabuleiro[casa[0]][casa[1]] != "")
+                //     return true;
+
                 //if(dropped[0] && $("#" + dropped[0].id).find("div").length > 0) //Verificando se existe peça com div. não funciona se não movermos as divs entre as td´s 
                 //if(casa[0] && $("#" + dropped[0].id))
                     //return true;
