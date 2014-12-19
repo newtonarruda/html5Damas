@@ -20,8 +20,69 @@ function drop(t,e) {
 //}
 
 $(function() {
-    $(".peca").draggable({ grid: [ 54, 54 ] });
+    var last_zindex = 3000;
+
+    $(".peca").draggable({
+        //grid: [ 54, 54 ],
+        drag: function( event, ui )
+        {            
+
+            //movePeca(idPeca, idCasaInicial, idCasaFinal);
+            $(this).css('z-index', last_zindex++);
+            //console.log($(this).parents('td'));
+
+
+        },
+        revert: function(dropped) {
+            //console.log(dropped);
+
+            var at_placeholder = dropped && dropped[0].id && (dropped[0].id.substring(0, 2) == "td" || dropped[0].id.substring(0, 3) == "box") ;
+
+            if(dropped[0] && $(dropped[0].id))
+            {
+
+                console.log("chamando " + dropped[0].id);
+                console.log($("#" + dropped[0].id)); //.find("div").length
+                console.log($("#" + dropped[0].id).find("div").length);
+
+                var casa = dropped[0].id.replace('td-', '').split("-");
+                console.log("Casa : " + casa[0] + " - " + casa[1]);
+
+                //if(dropped[0] && $("#" + dropped[0].id).find("div").length > 0) //Verificando se existe peça com div. não funciona se não movermos as divs entre as td´s 
+                if(casa[0] && $("#" + dropped[0].id))
+                    return true;
+
+                //TODO: 
+                // 1. Pegar o ID da casa anterior (origem) ou Buscar o array inteiro pelo ID da peça.
+                movePeca($(this).attr('id'), &ID_CASA_ANTERIOR, &ID_CASA_NOVA);
+
+
+
+            }
+
+            return !at_placeholder;
+        } ,
+        revertDuration: 200
+    });    
+
+    $(".casa").droppable({
+        //activeClass: 'ui-state-hover',
+        //hoverClass: 'ui-state-active',
+        over: function(event, ui) {
+            //$(this).addClass('ui-state-highlight').find('p').html('Dropped!');
+            // console.log("dropped at ");
+            // console.log($(this).attr('id'));
+        },
+        out: function(event, ui) {
+            //$(this).removeClass('ui-state-highlight').find('p').html('Drop me here');
+            // console.log("out");
+            // console.log($(this).attr('id'));            
+        }
+    });       
+
 });
+
+
 
 function resetPecas(){
 // VERMELHAS
@@ -60,7 +121,7 @@ function validaMovePeca(idCasaInicial, idCasaFinal){
     var yCasaInicial = parseInt(idCasaInicial.substring(5, 6));
     var xCasaFinal = parseInt(idCasaFinal.substring(3, 4));
     var yCasaFinal = parseInt(idCasaFinal.substring(5, 6));
-    
+
     if((xCasaInicial - xCasaFinal == 1 || xCasaInicial - xCasaFinal == -1) 
             && (yCasaInicial - yCasaFinal == 1 || yCasaInicial - yCasaFinal == -1)) {
         resultado = true;
@@ -72,6 +133,7 @@ function validaMovePeca(idCasaInicial, idCasaFinal){
 }
 
 function movePeca(idPeca, idCasaInicial, idCasaFinal){
+
     if(validaMovePeca(idCasaInicial, idCasaFinal)){
         tabuleiro[parseInt(idCasaFinal.substring(3, 4))][parseInt(idCasaFinal.substring(5, 6))] = idPeca;
         tabuleiro[parseInt(idCasaInicial.substring(3, 4))][parseInt(idCasaInicial.substring(5, 6))] = "";
@@ -109,10 +171,15 @@ function comePeca(){
             xCasaPcComida = parseInt(idCasaInicial.substring(3, 4)) - 1;
             yCasaPcComida = parseInt(idCasaInicial.substring(5, 6)) + 1;
         }
-        
-//        var nomepecacomida = ""
-//        $.(id=)
-        // TODO: Excluir a peça comida
+
+        var pos_pecacomida = $("#td-" + xCasaPcComida + "-" + yCasaPcComida);
+        console.log(nomepecacomida);
+
+        var pecacomida = $("#td-" + xCasaPcComida + "-" + yCasaPcComida).find("div");
+        console.log(pecacomida);        
+
+
+
     }
 	
 }

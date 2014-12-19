@@ -1,6 +1,6 @@
 table{
-    border:solid #fff 1px;
-    background-image: url(../images/fundo_preto.jpg); 
+    border: 0px none;
+    background-image: url(../images/ladies/89212.jpg); 
 	width:200px;
 	padding:0;
 	float: left;
@@ -10,39 +10,44 @@ table tr td{
 	width:50px;
     min-width:50px;
 	height:50px;
+	background-image: url(../images/cell_back.png);  
 	/*border:1px solid black;*/
 }
 
 table tr:nth-child(even) td:nth-child(even) {
-    background-color: #F5DFD3; 
+	background-image: none !important;  
 }
 
 table tr:nth-child(odd) td:nth-child(odd) {
-	background-color:#F5DFD3;  
+	background-image: none !important;  
 }
 
 div.peca {
 		width: 30px;
 		height: 30px;
-		margin:10px;
+		margin:7px;
 		-moz-border-radius:20px;
         -webkit-border-radius:20px;
         border-radius:20px;
+        border:3px outset #111;
 }
 
 div.azul {
-	background: -webkit-radial-gradient(#5C28EB, white, #5C28EB); /* Safari 5.1 to 6.0 */
-	background: -o-radial-gradient(#5C28EB, white, #5C28EB); /* For Opera 11.6 to 12.0 */
-	background: -moz-radial-gradient(#5C28EB, white, #5C28EB); /* For Firefox 3.6 to 15 */
-	background: radial-gradient(#5C28EB, white, #5C28EB); /* Standard syntax */
+	background: -webkit-radial-gradient(#5C28EB, black, grey, white, black ); /* Safari 5.1 to 6.0 */
+	background: -o-radial-gradient(#5C28EB, black, grey, white, black ); /* For Opera 11.6 to 12.0 */
+	background: -moz-radial-gradient(#5C28EB, black, grey, white, black ); /* For Firefox 3.6 to 15 */
+	background: radial-gradient(#5C28EB, black, grey, white, black ); /* Standard syntax */
+
+	
+
 }
 
 div.vermelha {
 
-	background: -webkit-radial-gradient(#D90F23, white, #D90F23); /* Safari 5.1 to 6.0 */
-	background: -o-radial-gradient(#D90F23, white, #D90F23); /* For Opera 11.6 to 12.0 */
-	background: -moz-radial-gradient(#D90F23, white, #D90F23); /* For Firefox 3.6 to 15 */
-	background: radial-gradient(#D90F23, white, #D90F23); /* Standard syntax */	
+	background: -webkit-radial-gradient(#D90F23, black, grey, white, #D90F23 ); /* Safari 5.1 to 6.0 */
+	background: -o-radial-gradient(#D90F23, black, grey, white, #D90F23 ); /* For Opera 11.6 to 12.0 */
+	background: -moz-radial-gradient(#D90F23, black, grey, white, #D90F23 ); /* For Firefox 3.6 to 15 */
+	background: radial-gradient(#D90F23, black, grey, white, #D90F23 ); /* Standard syntax */
 }
 
 div#boxA, div#boxB{
