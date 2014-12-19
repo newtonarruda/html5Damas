@@ -49,12 +49,12 @@ $(function() {
                 console.log("Casa : " + casa[0] + " - " + casa[1]);
 
                 //if(dropped[0] && $("#" + dropped[0].id).find("div").length > 0) //Verificando se existe peça com div. não funciona se não movermos as divs entre as td´s 
-                if(casa[0] && $("#" + dropped[0].id))
-                    return true;
+                //if(casa[0] && $("#" + dropped[0].id))
+                    //return true;
 
                 //TODO: 
                 // 1. Pegar o ID da casa anterior (origem) ou Buscar o array inteiro pelo ID da peça.
-                movePeca($(this).attr('id'), &ID_CASA_ANTERIOR, &ID_CASA_NOVA);
+                // movePeca($(this).attr('id'), &ID_CASA_ANTERIOR, &ID_CASA_NOVA);
 
 
 
