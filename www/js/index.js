@@ -1,4 +1,6 @@
 var tabuleiro = new Array(new Array());
+var xCasaInicial = 0;
+var yCasaInicial = 0;
 
 function drag(t,e) {		
 	e.dataTransfer.setData('Text', t.id);
@@ -29,10 +31,15 @@ $(function() {
 
             //movePeca(idPeca, idCasaInicial, idCasaFinal);
             $(this).css('z-index', last_zindex++);
-            //console.log($(this).parents('td'));
-
-
         },
+        start: function( event, ui )
+        {
+            var parent = $(this).parents('td');
+            // console.log(parent);
+            xCasaInicial = parseInt(parent.attr('id').substring(3, 4));
+            yCasaInicial = parseInt(parent.attr('id').substring(5, 6));            
+        },
+
         revert: function(dropped) {
             //console.log(dropped);
 
@@ -41,29 +48,26 @@ $(function() {
             if(dropped[0] && $(dropped[0].id))
             {
 
-                console.log("chamando " + dropped[0].id);
-                console.log($("#" + dropped[0].id)); //.find("div").length
-                console.log($("#" + dropped[0].id).find("div").length);
-
-                var casa = dropped[0].id.replace('td-', '').split("-");
-                console.log("Casa : " + casa[0] + " - " + casa[1]);
+                // console.log("chamando " + dropped[0].id);
+                // console.log($("#" + dropped[0].id)); //.find("div").length
+                // console.log($("#" + dropped[0].id).find("div").length);
 
                 // casa[0] armazena a posição x, enquanto casa[1] armazena a posição y
+                var casa = dropped[0].id.replace('td-', '').split("-");
 
                 //console.log((tabuleiro[casa[0]][casa[1]] && tabuleiro[casa[0]][casa[1]] != ""));
+                
+                // Opção A> Verificando se existe peça na casa, usando a matriz.
                 // if(tabuleiro[casa[0]][casa[1]] && tabuleiro[casa[0]][casa[1]] != "")
                 //     return true;
 
-                //if(dropped[0] && $("#" + dropped[0].id).find("div").length > 0) //Verificando se existe peça com div. não funciona se não movermos as divs entre as td´s 
+                // Opção B> Verificando se existe peça com div. não funciona se não movermos as divs entre as td´s 
+                //if(dropped[0] && $("#" + dropped[0].id).find("div").length > 0) 
                 //if(casa[0] && $("#" + dropped[0].id))
-                    //return true;
+                //    return true;
 
-                //TODO: 
-                // 1. Pegar o ID da casa anterior (origem) ou Buscar o array inteiro pelo ID da peça.
-                // movePeca($(this).attr('id'), &ID_CASA_ANTERIOR, &ID_CASA_NOVA);
-
-
-
+                console.log("movendo peca " + $(this).attr('id') + " de " + yCasaInicial + "," + xCasaInicial + " a " + dropped[0].id);
+                movePeca($(this).attr('id'), "td-" + yCasaInicial + "-" + xCasaInicial, dropped[0].id);
             }
 
             return !at_placeholder;
@@ -72,17 +76,12 @@ $(function() {
     });    
 
     $(".casa").droppable({
-        //activeClass: 'ui-state-hover',
-        //hoverClass: 'ui-state-active',
+
         over: function(event, ui) {
-            //$(this).addClass('ui-state-highlight').find('p').html('Dropped!');
-            // console.log("dropped at ");
-            // console.log($(this).attr('id'));
+
         },
         out: function(event, ui) {
-            //$(this).removeClass('ui-state-highlight').find('p').html('Drop me here');
-            // console.log("out");
-            // console.log($(this).attr('id'));            
+         
         }
     });       
 
@@ -120,29 +119,55 @@ function resetPecas(){
     tabuleiro[7][8] = "A12";    
 }
 
-function validaMovePeca(idCasaInicial, idCasaFinal){
+function validaMovePeca(idPeca, idCasaInicial, idCasaFinal){
     var resultado = true;
     
-    var xCasaInicial = parseInt(idCasaInicial.substring(3, 4));
-    var yCasaInicial = parseInt(idCasaInicial.substring(5, 6));
-    var xCasaFinal = parseInt(idCasaFinal.substring(3, 4));
-    var yCasaFinal = parseInt(idCasaFinal.substring(5, 6));
+    var _xCasaInicial = parseInt(idCasaInicial.substring(3, 4));
+    var _yCasaInicial = parseInt(idCasaInicial.substring(5, 6));
+    var _xCasaFinal = parseInt(idCasaFinal.substring(3, 4));
+    var _yCasaFinal = parseInt(idCasaFinal.substring(5, 6));
 
-    if((xCasaInicial - xCasaFinal == 1 || xCasaInicial - xCasaFinal == -1) 
-            && (yCasaInicial - yCasaFinal == 1 || yCasaInicial - yCasaFinal == -1)) {
-        resultado = true;
-    }else{
-        resultado = false;
+    console.log(idPeca.substring(0,1));
+
+    if(idPeca.substring(0,1) == "A")
+    {
+        if((_xCasaInicial - _xCasaFinal == 1 || _xCasaInicial - _xCasaFinal == -1) 
+                && (_yCasaInicial - _yCasaFinal == 1)) {
+            resultado = true;
+        }else{
+            resultado = false;
+        }
     }
+    else
+    {
+        if((_xCasaInicial - _xCasaFinal == 1 || _xCasaInicial - _xCasaFinal == -1) 
+                && (_yCasaInicial - _yCasaFinal == -1)) {
+            resultado = true;
+        }else{
+            resultado = false;
+        }
+    }
+
+
     
     return resultado;
 }
 
 function movePeca(idPeca, idCasaInicial, idCasaFinal){
 
-    if(validaMovePeca(idCasaInicial, idCasaFinal)){
+    xCasaInicial = parseInt(idCasaInicial.substring(3, 4));
+    yCasaInicial = parseInt(idCasaInicial.substring(5, 6));
+    
+    if(validaMovePeca(idPeca, idCasaInicial, idCasaFinal)){
+        console.log("movendo peça");
         tabuleiro[parseInt(idCasaFinal.substring(3, 4))][parseInt(idCasaFinal.substring(5, 6))] = idPeca;
         tabuleiro[parseInt(idCasaInicial.substring(3, 4))][parseInt(idCasaInicial.substring(5, 6))] = "";
+
+        console.log("#td-" + idCasaFinal.substring(3, 4) + "-" + idCasaFinal.substring(5, 6));
+        console.log("#td-" + yCasaInicial + "-" + xCasaInicial);
+
+        $("#td-" + idCasaFinal.substring(3, 4) + "-" + idCasaFinal.substring(5, 6)).append($("#" + idPeca));
+        $("#td-" + yCasaInicial + "-" + xCasaInicial).find("#" + idPeca).remove();        
     }
 }
 
